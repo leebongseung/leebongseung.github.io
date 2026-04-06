@@ -5,8 +5,7 @@ baseurl: ""
 
 theme: minima
 
-author:
-  name: BongSeung Lee
+author: BongSeung Lee
 
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
