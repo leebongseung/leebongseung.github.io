@@ -7,26 +7,36 @@
   {%- feed_meta -%}
   <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
   <style>
-    @media (prefers-color-scheme: dark) {
-      body { background: #1a1a2e; color: #e0e0e0; }
-      .site-header { background: #16213e; border-bottom-color: #2a2a4a; }
-      .site-header a, .site-header a:visited { color: #e0e0e0; }
-      .site-nav .page-link { color: #e0e0e0; }
-      .site-title, .site-title:visited { color: #e0e0e0; }
-      .site-footer { background: #16213e; border-top-color: #2a2a4a; color: #999; }
-      a { color: #6db3f2; }
-      a:visited { color: #b39ddb; }
-      h1, h2, h3, h4 { color: #f0f0f0; }
-      code { background: #2a2a4a; color: #e0e0e0; }
-      pre, .highlight { background: #1e1e30 !important; }
-      table th { background: #2a2a4a; }
-      table td, table th { border-color: #3a3a5a; }
-      blockquote { color: #aaa; border-left-color: #3a3a5a; }
-      #toc-sidebar { background: #16213e; border-color: #2a2a4a; }
-      #toc-list li a { color: #aaa; }
-      #toc-list li a:hover, #toc-list li a.toc-active { color: #f0f0f0; }
-      .post-meta { color: #888; }
-      .post-meta a { background: #2a2a4a !important; color: #ccc !important; }
+    body.dark { background: #1a1a2e; color: #e0e0e0; }
+    body.dark .site-header { background: #16213e; border-bottom-color: #2a2a4a; }
+    body.dark .site-header a, body.dark .site-header a:visited { color: #e0e0e0; }
+    body.dark .site-nav .page-link { color: #e0e0e0; }
+    body.dark .site-title, body.dark .site-title:visited { color: #e0e0e0; }
+    body.dark .site-footer { background: #16213e; border-top-color: #2a2a4a; color: #999; }
+    body.dark a { color: #6db3f2; }
+    body.dark a:visited { color: #b39ddb; }
+    body.dark h1, body.dark h2, body.dark h3, body.dark h4 { color: #f0f0f0; }
+    body.dark code { background: #2a2a4a; color: #e0e0e0; }
+    body.dark pre, body.dark .highlight { background: #1e1e30 !important; }
+    body.dark table th { background: #2a2a4a; }
+    body.dark table td, body.dark table th { border-color: #3a3a5a; }
+    body.dark blockquote { color: #aaa; border-left-color: #3a3a5a; }
+    body.dark #toc-sidebar { background: #16213e; border-color: #2a2a4a; }
+    body.dark #toc-list li a { color: #aaa; }
+    body.dark #toc-list li a:hover, body.dark #toc-list li a.toc-active { color: #f0f0f0; }
+    body.dark .post-meta { color: #888; }
+    body.dark .post-meta a { background: #2a2a4a !important; color: #ccc !important; }
+    #dark-toggle {
+      position: fixed; top: 16px; right: 16px; z-index: 999;
+      background: none; border: 1px solid #ccc; border-radius: 50%;
+      width: 36px; height: 36px; font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
     }
+    body.dark #dark-toggle { border-color: #555; }
+    #dark-toggle:hover { background: rgba(128,128,128,0.15); }
   </style>
+  <script>
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.style.background = '#1a1a2e';
+  </script>
 </head>
