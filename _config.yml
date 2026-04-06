@@ -9,6 +9,8 @@ author: BongSeung Lee
 
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
+future: true
+timezone: Asia/Seoul
 
 plugins:
   - jekyll-feed
