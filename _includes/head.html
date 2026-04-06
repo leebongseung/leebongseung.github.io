@@ -7,28 +7,28 @@
   {%- feed_meta -%}
   <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
   <style>
-    body.dark { background: #1a1a2e; color: #e0e0e0; }
-    body.dark .site-header { background: #16213e; border-bottom-color: #2a2a4a; }
-    body.dark .site-header a, body.dark .site-header a:visited { color: #e0e0e0; }
-    body.dark .site-nav .page-link { color: #e0e0e0; }
-    body.dark .site-title, body.dark .site-title:visited { color: #e0e0e0; }
-    body.dark .site-footer { background: #16213e; border-top-color: #2a2a4a; color: #999; }
-    body.dark a { color: #6db3f2; }
-    body.dark a:visited { color: #b39ddb; }
-    body.dark h1, body.dark h2, body.dark h3, body.dark h4 { color: #f0f0f0; }
-    body.dark code { background: #2a2a4a; color: #e0e0e0; }
-    body.dark pre, body.dark .highlight { background: #1e1e30 !important; }
-    body.dark table { color: #e0e0e0; }
-    body.dark table th { background: #1e2a40; color: #f0f0f0; }
-    body.dark table td { background: #1a1a2e; color: #e0e0e0; }
-    body.dark table tr:nth-child(even) td { background: #1f1f35; }
-    body.dark table td, body.dark table th { border-color: #2a2a4a; }
-    body.dark blockquote { color: #aaa; border-left-color: #3a3a5a; }
-    body.dark #toc-sidebar { background: #16213e; border-color: #2a2a4a; }
-    body.dark #toc-list li a { color: #aaa; }
-    body.dark #toc-list li a:hover, body.dark #toc-list li a.toc-active { color: #f0f0f0; }
+    body.dark { background: #1e1e1e; color: #dcddde; }
+    body.dark .site-header { background: #262626; border-bottom-color: #333; }
+    body.dark .site-header a, body.dark .site-header a:visited { color: #dcddde; }
+    body.dark .site-nav .page-link { color: #dcddde; }
+    body.dark .site-title, body.dark .site-title:visited { color: #dcddde; }
+    body.dark .site-footer { background: #262626; border-top-color: #333; color: #999; }
+    body.dark a { color: #7f6df2; }
+    body.dark a:visited { color: #7f6df2; }
+    body.dark h1, body.dark h2, body.dark h3, body.dark h4 { color: #e0e0e0; }
+    body.dark code { background: #2b2b2b; color: #dcddde; }
+    body.dark pre, body.dark .highlight { background: #2b2b2b !important; }
+    body.dark table { color: #dcddde; }
+    body.dark table th { background: #2b2b2b; color: #e0e0e0; }
+    body.dark table td { background: #1e1e1e; color: #dcddde; }
+    body.dark table tr:nth-child(even) td { background: #242424; }
+    body.dark table td, body.dark table th { border-color: #333; }
+    body.dark blockquote { color: #999; border-left-color: #444; }
+    body.dark #toc-sidebar { background: #262626; border-color: #333; }
+    body.dark #toc-list li a { color: #999; }
+    body.dark #toc-list li a:hover, body.dark #toc-list li a.toc-active { color: #e0e0e0; }
     body.dark .post-meta { color: #888; }
-    body.dark .post-meta a { background: #2a2a4a !important; color: #ccc !important; }
+    body.dark .post-meta a { background: #2b2b2b !important; color: #dcddde !important; }
     #dark-toggle {
       position: fixed; top: 16px; right: 16px; z-index: 999;
       background: none; border: 1px solid #ccc; border-radius: 50%;
@@ -40,6 +40,6 @@
     #dark-toggle:hover { background: rgba(128,128,128,0.15); }
   </style>
   <script>
-    if (localStorage.getItem('theme') === 'dark') document.documentElement.style.background = '#1a1a2e';
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.style.background = '#1e1e1e';
   </script>
 </head>
