@@ -8,7 +8,7 @@ theme: minima
 author: BongSeung Lee
 
 markdown: kramdown
-permalink: /:year/:month/:day/:title/
+permalink: /posts/:title/
 future: true
 timezone: Asia/Seoul
 
