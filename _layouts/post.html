@@ -18,9 +18,78 @@ layout: default
     </p>
   </header>
 
+  <nav id="toc-sidebar">
+    <strong>목차</strong>
+    <ul id="toc-list"></ul>
+  </nav>
+
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
   </div>
+
+  <style>
+    #toc-sidebar {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      width: 220px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      background: #f8f9fa;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 0.82em;
+      line-height: 1.7;
+      z-index: 100;
+    }
+    #toc-sidebar strong { display: block; margin-bottom: 6px; font-size: 0.95em; }
+    #toc-list { list-style: none; padding: 0; margin: 0; }
+    #toc-list li a {
+      text-decoration: none;
+      color: #555;
+      display: block;
+      padding: 1px 0;
+      transition: color 0.15s;
+    }
+    #toc-list li a:hover, #toc-list li a.toc-active { color: #111; font-weight: 600; }
+    @media (max-width: 1200px) {
+      #toc-sidebar { display: none; }
+    }
+  </style>
+
+  <script>
+  (function() {
+    var headings = document.querySelectorAll('.post-content h2, .post-content h3');
+    var toc = document.getElementById('toc-list');
+    var sidebar = document.getElementById('toc-sidebar');
+    if (headings.length === 0) { sidebar.style.display = 'none'; return; }
+
+    var links = [];
+    headings.forEach(function(h) {
+      if (!h.id) h.id = h.textContent.trim().toLowerCase().replace(/[^\w가-힣]+/g, '-').replace(/^-|-$/g, '');
+      var li = document.createElement('li');
+      if (h.tagName === 'H3') li.style.paddingLeft = '1em';
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent;
+      li.appendChild(a);
+      toc.appendChild(li);
+      links.push({ el: h, a: a });
+    });
+
+    function onScroll() {
+      var current = null;
+      for (var i = 0; i < links.length; i++) {
+        if (links[i].el.getBoundingClientRect().top <= 100) current = i;
+      }
+      links.forEach(function(l) { l.a.classList.remove('toc-active'); });
+      if (current !== null) links[current].a.classList.add('toc-active');
+    }
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+  })();
+  </script>
 
   {% if page.tags.size > 0 %}
   <footer style="margin-top:2em;padding-top:1em;border-top:1px solid #e2e8f0;">
