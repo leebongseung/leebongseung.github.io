@@ -1,0 +1,16 @@
+title: Bong's Dev Blog
+description: 개발 학습과 경험을 기록하는 블로그
+url: "https://leebongseung.github.io"
+baseurl: ""
+
+theme: minima
+
+author:
+  name: BongSeung Lee
+
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
