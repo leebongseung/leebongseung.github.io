@@ -57,5 +57,3 @@ XACK stream group id                   # 처리 완료 확인
 | 에코시스템 | Connect, Streams, KSQL | Redis 내에서만 |
 
 > **실무 경험칙:** "Redis 이미 있고 하루 수백만 건 이하면 Redis Stream, 그 이상이거나 장기 보관 필요하면 Kafka"
-
-> **면접 포인트:** Kafka vs Redis Stream — 처리량, 영속성, 운영 복잡도 기준으로 선택 근거를 말할 수 있어야 함
