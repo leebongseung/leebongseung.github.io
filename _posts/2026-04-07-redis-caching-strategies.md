@@ -87,8 +87,6 @@ tags: [redis, 캐싱, spring]
 | **인프라 요구** | 특별한 지원 불필요 | Redisson 등 CacheLoader 필요 |
 | **실무 빈도** | 가장 높음 | 프레임워크 의존, 상대적으로 낮음 |
 
-> **면접 포인트:** "둘 다 Lazy Loading이지만, **로딩 책임의 위치**가 다르다"
-
 ## 3대 캐시 장애 패턴
 
 ### Cache Stampede (Thundering Herd)

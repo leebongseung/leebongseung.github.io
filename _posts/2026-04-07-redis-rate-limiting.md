@@ -100,5 +100,3 @@ end
 | 분산 지원 | Redis 등 지원 | **단일 인스턴스만** | Redis 지원 |
 | 적용 위치 | 필터/인터셉터/메서드 | 메서드 (AOP) | Gateway 라우트 |
 | 적합 시나리오 | API 서버 Rate Limit | 서비스 간 호출 보호 | API Gateway 레벨 |
-
-> **면접 포인트:** "분산 환경 Rate Limit → Bucket4j + Redis, 서비스 내부 보호 → Resilience4j, API Gateway → SCG 내장"
