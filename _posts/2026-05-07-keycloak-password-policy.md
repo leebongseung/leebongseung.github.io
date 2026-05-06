@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "비밀번호 정책 다루기 — Keycloak 기본 정책과 Custom SPI"
-date: 2026-05-07 12:00:00 +0900
+date: 2026-05-07 00:02:00 +0900
 categories: [개발, Keycloak]
 tags: [keycloak, 비밀번호정책, password-policy, spi, 보안, 인증]
 ---
