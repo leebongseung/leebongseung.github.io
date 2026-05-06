@@ -40,7 +40,7 @@ analytics:
   google:
     id:
   goatcounter:
-    id:
+    id: leebongseung
   umami:
     id:
     domain:
@@ -53,7 +53,7 @@ analytics:
     id:
 
 pageviews:
-  provider:
+  provider: goatcounter
 
 # Prefer color scheme setting.
 # light — Use the light color scheme
