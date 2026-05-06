@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "권한 체계 — RBAC / ABAC / UBAC 모델"
-date: 2026-05-07 10:00:00 +0900
+date: 2026-05-07 00:00:00 +0900
 categories: [개발, 권한]
 tags: [권한, rbac, abac, ubac, keycloak, 인가]
 ---

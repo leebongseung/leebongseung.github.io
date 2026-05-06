@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "권한 도메인 — 데이터 모델과 구성요소"
-date: 2026-05-07 11:00:00 +0900
+date: 2026-05-07 00:01:00 +0900
 categories: [개발, 권한]
 tags: [권한, 권한도메인, rbac, abac, ubac, keycloak]
 ---
