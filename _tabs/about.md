@@ -17,4 +17,4 @@ order: 4
 ## Contact
 
 - **GitHub**: [leebongseung](https://github.com/leebongseung)
-- **Email**: yui5227@idstrust.com
+- **Email**: yui5227@gmail.com
