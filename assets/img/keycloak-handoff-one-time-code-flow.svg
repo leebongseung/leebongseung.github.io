@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">일회용 코드를 이용해 Keycloak 세션을 만드는 흐름</title>
+  <desc id="desc">선행 시스템의 식별 정보를 애플리케이션이 확인한 뒤 일회용 코드를 발급한다. 브라우저는 코드만 Keycloak에 전달하고, Keycloak은 백채널에서 애플리케이션에 코드를 확인한 후 IdP 세션을 생성한다.</desc>
+  <defs>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#6b7280"/>
+    </marker>
+    <marker id="arrow2-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#2f6b58"/>
+    </marker>
+    <style>
+      text { font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; }
+      .label { font-size: 18px; font-weight: 700; fill: #1f2937; }
+      .small { font-size: 14px; fill: #6b7280; }
+      .accent-small { font-size: 15px; font-weight: 700; fill: #2f6b58; }
+      .box { fill: #ffffff; stroke: #d7dce1; stroke-width: 2; }
+      .box-accent { fill: #e8f2ed; stroke: #2f6b58; stroke-width: 2; }
+      .box-back { fill: #f5f8f6; stroke: #2f6b58; stroke-width: 2; }
+      .line { fill: none; stroke: #6b7280; stroke-width: 2.5; }
+      .line-accent { fill: none; stroke: #2f6b58; stroke-width: 3; }
+    </style>
+  </defs>
+
+  <rect x="1" y="1" width="1198" height="558" rx="18" fill="#fbfaf8" stroke="#e5e1d9" stroke-width="2"/>
+  <text x="600" y="45" text-anchor="middle" class="accent-small">브라우저에는 사용자 정보가 아닌 짧은 수명의 일회용 코드만 흐른다</text>
+
+  <rect x="35" y="85" width="285" height="100" rx="12" class="box"/>
+  <text x="177" y="124" text-anchor="middle" class="label">1. 선행 시스템</text>
+  <text x="177" y="153" text-anchor="middle" class="small">사용자 식별 정보 전달</text>
+
+  <path d="M340 135H440" class="line" marker-end="url(#arrow2)"/>
+
+  <rect x="460" y="85" width="285" height="100" rx="12" class="box"/>
+  <text x="602" y="124" text-anchor="middle" class="label">2. 애플리케이션</text>
+  <text x="602" y="153" text-anchor="middle" class="small">검증 후 일회용 코드 발급</text>
+
+  <path d="M765 135H865" class="line" marker-end="url(#arrow2)"/>
+
+  <rect x="885" y="85" width="280" height="100" rx="12" class="box-accent"/>
+  <text x="1025" y="124" text-anchor="middle" class="label">3. 브라우저</text>
+  <text x="1025" y="153" text-anchor="middle" class="small">Keycloak 인증 요청에 코드 전달</text>
+
+  <path d="M1025 205V272" class="line" marker-end="url(#arrow2)"/>
+
+  <rect x="885" y="292" width="280" height="100" rx="12" class="box"/>
+  <text x="1025" y="331" text-anchor="middle" class="label">4. Keycloak</text>
+  <text x="1025" y="360" text-anchor="middle" class="small">인증 단계에서 코드 확인 요청</text>
+
+  <path d="M865 342H765" class="line-accent" marker-end="url(#arrow2-accent)"/>
+
+  <rect x="460" y="292" width="285" height="100" rx="12" class="box-back"/>
+  <text x="602" y="331" text-anchor="middle" class="label">5. 애플리케이션</text>
+  <text x="602" y="360" text-anchor="middle" class="small">코드를 한 번만 소비하고 사용자 응답</text>
+
+  <path d="M440 342H340" class="line-accent" marker-end="url(#arrow2-accent)"/>
+
+  <rect x="35" y="292" width="285" height="100" rx="12" class="box-accent"/>
+  <text x="177" y="331" text-anchor="middle" class="label">6. IdP 세션 생성</text>
+  <text x="177" y="360" text-anchor="middle" class="small">이후 표준 OIDC 흐름으로 복귀</text>
+
+  <rect x="360" y="444" width="805" height="72" rx="12" fill="#eef5f1" stroke="#a8c7b9" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="762" y="475" text-anchor="middle" class="accent-small">4 → 5는 서버 간 백채널</text>
+  <text x="762" y="499" text-anchor="middle" class="small">브라우저는 코드의 의미와 사용자 정보를 알지 못한다</text>
+</svg>

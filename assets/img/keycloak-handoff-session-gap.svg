@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">표준 OIDC 경로와 IdP 우회 로그인 비교</title>
+  <desc id="desc">표준 OIDC 경로에서는 브라우저가 Keycloak을 거쳐 애플리케이션으로 이동해 IdP 세션이 생성된다. 우회 로그인에서는 선행 시스템에서 애플리케이션으로 바로 이동해 Keycloak이 로그인 사실을 알 수 없다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#6b7280"/>
+    </marker>
+    <marker id="arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#2f6b58"/>
+    </marker>
+    <style>
+      text { font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; }
+      .section { font-size: 18px; font-weight: 700; fill: #374151; }
+      .label { font-size: 19px; font-weight: 700; fill: #1f2937; }
+      .small { font-size: 15px; fill: #6b7280; }
+      .accent-small { font-size: 15px; font-weight: 700; fill: #2f6b58; }
+      .box { fill: #ffffff; stroke: #d7dce1; stroke-width: 2; }
+      .box-accent { fill: #e8f2ed; stroke: #2f6b58; stroke-width: 2; }
+      .box-muted { fill: #f8fafb; stroke: #c9ced4; stroke-width: 2; stroke-dasharray: 8 6; }
+      .line { fill: none; stroke: #6b7280; stroke-width: 2.5; }
+      .line-accent { fill: none; stroke: #2f6b58; stroke-width: 3; }
+    </style>
+  </defs>
+
+  <rect x="1" y="1" width="1198" height="428" rx="18" fill="#fbfaf8" stroke="#e5e1d9" stroke-width="2"/>
+
+  <text x="42" y="49" class="section">표준 OIDC 경로</text>
+  <rect x="42" y="70" width="210" height="82" rx="12" class="box"/>
+  <text x="147" y="119" text-anchor="middle" class="label">브라우저</text>
+  <path d="M270 111H440" class="line" marker-end="url(#arrow)"/>
+  <rect x="460" y="70" width="220" height="82" rx="12" class="box-accent"/>
+  <text x="570" y="119" text-anchor="middle" class="label">Keycloak</text>
+  <path d="M700 111H870" class="line" marker-end="url(#arrow)"/>
+  <rect x="890" y="70" width="268" height="82" rx="12" class="box"/>
+  <text x="1024" y="119" text-anchor="middle" class="label">애플리케이션</text>
+  <text x="570" y="182" text-anchor="middle" class="accent-small">이 지점에서 IdP 세션이 만들어진다</text>
+
+  <line x1="42" y1="214" x2="1158" y2="214" stroke="#e5e1d9" stroke-width="2"/>
+
+  <text x="42" y="263" class="section">IdP 우회 로그인</text>
+  <rect x="42" y="284" width="210" height="82" rx="12" class="box"/>
+  <text x="147" y="333" text-anchor="middle" class="label">선행 시스템</text>
+  <rect x="460" y="284" width="220" height="82" rx="12" class="box-muted"/>
+  <text x="570" y="325" text-anchor="middle" class="small">Keycloak</text>
+  <text x="570" y="348" text-anchor="middle" class="small">거치지 않음</text>
+  <rect x="890" y="284" width="268" height="82" rx="12" class="box"/>
+  <text x="1024" y="333" text-anchor="middle" class="label">애플리케이션</text>
+  <path d="M270 310C420 265 720 265 870 310" class="line-accent" marker-end="url(#arrow-accent)"/>
+  <text x="570" y="247" text-anchor="middle" class="accent-small">앱이 직접 사용자를 확인하고 자체 세션을 만든다</text>
+  <text x="570" y="402" text-anchor="middle" class="small">Keycloak은 로그인 사실을 알 수 없어 세션과 이벤트가 남지 않는다</text>
+</svg>
