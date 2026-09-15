@@ -30,6 +30,120 @@ tags: [mcp, ai-agent, 게이트웨이, 권한, 측정]
 
 한 가지 더. 두 조건 모두 도구 목록 12개를 그대로 보여 준다. 게이트웨이가 목록을 미리 걸러 버리면 "시도"를 셀 수가 없다.
 
+## 구조는 이렇다
+
+그림으로 보면 이렇다. 왼쪽의 에이전트가 오른쪽의 도구를 부르는데, 그 사이에 게이트웨이가 서 있다. 게이트웨이는 위쪽 Keycloak에 "이 사람 지금 무슨 role인가"를 묻고, 아래쪽 장부에 모든 호출을 적는다. direct 조건은 이 그림에서 게이트웨이를 빼고 에이전트가 도구 서버를 바로 부르는 것이다.
+
+<div style="overflow-x:auto;margin:16px 0"><svg viewbox="0 0 1120 690" role="img" aria-label="system architecture" style="font-size:12px">
+  <defs>
+    <marker id="ka" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="7" markerheight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3b4252"/></marker>
+    <marker id="kb" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="7" markerheight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c98a12"/></marker>
+    <symbol id="k-user" viewbox="0 0 48 48"><circle cx="24" cy="16" r="9" fill="#fff" stroke="#3b4252" stroke-width="2.5"></circle><path d="M8,44 C8,32 16,28 24,28 C32,28 40,32 40,44 Z" fill="#fff" stroke="#3b4252" stroke-width="2.5"/></symbol>
+    <symbol id="k-robot" viewbox="0 0 48 48"><line x1="24" y1="4" x2="24" y2="11" stroke="#3b4252" stroke-width="2.5"/><circle cx="24" cy="4" r="2.5" fill="#3b4252"></circle><rect x="8" y="11" width="32" height="26" rx="6" fill="#fff" stroke="#3b4252" stroke-width="2.5"/><circle cx="17" cy="23" r="3.5" fill="#2456c9"></circle><circle cx="31" cy="23" r="3.5" fill="#2456c9"></circle><rect x="16" y="30" width="16" height="3" rx="1.5" fill="#3b4252"/><rect x="2" y="18" width="6" height="10" rx="2" fill="#fff" stroke="#3b4252" stroke-width="2.5"/><rect x="40" y="18" width="6" height="10" rx="2" fill="#fff" stroke="#3b4252" stroke-width="2.5"/><rect x="14" y="37" width="20" height="7" rx="2" fill="#fff" stroke="#3b4252" stroke-width="2.5"/></symbol>
+    <symbol id="k-shield" viewbox="0 0 48 48"><path d="M24,4 L40,10 L40,22 C40,33 33,40 24,45 C15,40 8,33 8,22 L8,10 Z" fill="#fff" stroke="#2456c9" stroke-width="2.5"/><path d="M16,24 L22,30 L33,18" fill="none" stroke="#2456c9" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="k-key" viewbox="0 0 48 48"><circle cx="16" cy="18" r="10" fill="#fff" stroke="#c98a12" stroke-width="2.5"></circle><circle cx="16" cy="18" r="3.5" fill="#c98a12"></circle><path d="M23,25 L42,44" stroke="#c98a12" stroke-width="3.5" stroke-linecap="round"/><path d="M34,36 L39,31 M38,40 L43,35" stroke="#c98a12" stroke-width="3.5" stroke-linecap="round"/></symbol>
+    <symbol id="k-server" viewbox="0 0 48 48"><rect x="6" y="6" width="36" height="11" rx="2" fill="#fff" stroke="#3b4252" stroke-width="2.5"/><rect x="6" y="19" width="36" height="11" rx="2" fill="#fff" stroke="#3b4252" stroke-width="2.5"/><rect x="6" y="32" width="36" height="11" rx="2" fill="#fff" stroke="#3b4252" stroke-width="2.5"/><circle cx="35" cy="11.5" r="2" fill="#2e7d4f"></circle><circle cx="35" cy="24.5" r="2" fill="#2e7d4f"></circle><circle cx="35" cy="37.5" r="2" fill="#2e7d4f"></circle></symbol>
+    <symbol id="k-db" viewbox="0 0 48 48"><path d="M8,12 L8,36 C8,40 15,43 24,43 C33,43 40,40 40,36 L40,12" fill="#fff" stroke="#3b4252" stroke-width="2.5"/><ellipse cx="24" cy="12" rx="16" ry="6" fill="#fff" stroke="#3b4252" stroke-width="2.5"></ellipse><path d="M8,20 C8,24 15,27 24,27 C33,27 40,24 40,20" fill="none" stroke="#3b4252" stroke-width="2"/><path d="M8,28 C8,32 15,35 24,35 C33,35 40,32 40,28" fill="none" stroke="#3b4252" stroke-width="2"/></symbol>
+  </defs>
+
+  <rect x="40" y="60" width="280" height="86" rx="10" fill="#ffffff" stroke="#c9d0dc" stroke-width="1.5"/>
+  
+  <text x="106" y="88" font-weight="700" style="font-size:14px">사용자 + 브라우저</text>
+  <text x="106" y="108" style="font-size:11px" fill="#3b4252">사람이 Keycloak 화면에서 로그인·동의</text>
+  <text x="106" y="124" style="font-size:11px" fill="#3b4252">CIMD 검증 1회에 사용</text>
+  <use href="#k-user" x="54" y="80" width="42" height="42"></use>
+
+  <rect x="420" y="60" width="360" height="104" rx="10" fill="#fff7e6" stroke="#c98a12" stroke-width="2"/>
+  
+  <text x="486" y="88" font-weight="700" style="font-size:14px">Keycloak 26.7.0  :8180</text>
+  <text x="486" y="108" style="font-size:11px" fill="#3b4252">인가 서버 · realm mcp-lab · CIMD 켬</text>
+  <text x="486" y="124" style="font-size:11px" fill="#3b4252">로그인 · 동의 · 토큰 발급 · role 원본</text>
+  <text x="486" y="140" style="font-size:11px" fill="#3b4252">SPI 플러그인: role 변경 시 ⑨ 알림</text>
+  <use href="#k-key" x="434" y="88" width="42" height="42"></use>
+
+  <rect x="40" y="320" width="280" height="112" rx="10" fill="#ffffff" stroke="#c9d0dc" stroke-width="1.5"/>
+  
+  <text x="106" y="348" font-weight="700" style="font-size:14px">MCP 클라이언트</text>
+  <text x="106" y="368" style="font-size:11px" fill="#3b4252">Claude Code — 실험 1 (240회)</text>
+  <text x="106" y="384" style="font-size:11px" fill="#3b4252">CIMD 테스트 클라이언트 :8095 — 검증 1회</text>
+  <text x="106" y="400" style="font-size:11px" fill="#3b4252">소개 문서(client.json) + 콜백 제공</text>
+  <use href="#k-robot" x="54" y="352" width="42" height="42"></use>
+
+  <rect x="420" y="320" width="360" height="112" rx="10" fill="#eef3ff" stroke="#2456c9" stroke-width="2"/>
+  
+  <text x="486" y="348" font-weight="700" style="font-size:14px">게이트웨이 (경비실)  :8090</text>
+  <text x="486" y="368" style="font-size:11px" fill="#3b4252">토큰 검증 · 규칙 판정 · 장부 기록 · 전달</text>
+  <text x="486" y="384" style="font-size:11px" fill="#3b4252">role 캐시 30초 (⑥ 조회 · ⑨ 즉시 무효화)</text>
+  <text x="486" y="400" style="font-size:11px" fill="#3b4252">Java 21 · Spring Boot 3.5 · 이 프로젝트가 만든 것</text>
+  <use href="#k-shield" x="434" y="352" width="42" height="42"></use>
+
+  <rect x="880" y="320" width="220" height="112" rx="10" fill="#ffffff" stroke="#c9d0dc" stroke-width="1.5"/>
+  
+  <text x="946" y="348" font-weight="700" style="font-size:14px">도구 서버 (스텁)  :8091</text>
+  <text x="946" y="368" style="font-size:11px" fill="#3b4252">가짜 GitHub / Notion</text>
+  <text x="946" y="384" style="font-size:11px" fill="#3b4252">도구 12개, 지연 20ms</text>
+  <text x="946" y="400" style="font-size:11px" fill="#3b4252">실제 SaaS 대신</text>
+  <use href="#k-server" x="892" y="352" width="42" height="42"></use>
+
+  <rect x="420" y="560" width="360" height="86" rx="10" fill="#ffffff" stroke="#c9d0dc" stroke-width="1.5"/>
+  
+  <text x="486" y="588" font-weight="700" style="font-size:14px">PostgreSQL 16  :5442</text>
+  <text x="486" y="608" style="font-size:11px" fill="#3b4252">장부 audit_call — 모든 측정치의 출처</text>
+  <text x="486" y="624" style="font-size:11px" fill="#3b4252">Keycloak 자체 DB 도 여기</text>
+  <use href="#k-db" x="434" y="580" width="42" height="42"></use>
+
+  
+  <line x1="320" y1="100" x2="418" y2="100" stroke="#3b4252" stroke-width="1.5" marker-end="url(#ka)"/>
+  <text x="369" y="91" text-anchor="middle" style="font-size:11px" font-weight="600">③ 로그인 · 동의</text>
+
+  
+  <path d="M150,320 L150,236 L480,236 L480,166" fill="none" stroke="#3b4252" stroke-width="1.5" marker-start="url(#ka)" marker-end="url(#ka)"/>
+  <text x="162" y="216" style="font-size:11px" font-weight="600">② 로그인 요청 (PKCE, scope = mcp:tools)</text>
+  <text x="162" y="230" style="font-size:10.5px" fill="#5d6470">client_id = 소개 문서 URL (Keycloak 이 읽어 인식)</text>
+  <text x="162" y="256" style="font-size:11px" font-weight="600">④ 토큰 발급 (aud = 게이트웨이, scope = mcp:tools)</text>
+
+  
+  <line x1="320" y1="352" x2="418" y2="352" stroke="#3b4252" stroke-width="1.5" marker-end="url(#ka)"/>
+  <text x="369" y="343" text-anchor="middle" style="font-size:11px" font-weight="600">① 토큰 없이 요청</text>
+  <text x="369" y="365" text-anchor="middle" style="font-size:10.5px" fill="#5d6470">401 + PRM 안내문</text>
+
+  
+  <line x1="320" y1="406" x2="418" y2="406" stroke="#3b4252" stroke-width="1.5" marker-end="url(#ka)"/>
+  <text x="369" y="397" text-anchor="middle" style="font-size:11px" font-weight="600">⑤ tools/call</text>
+  <text x="369" y="419" text-anchor="middle" style="font-size:10.5px" fill="#5d6470">+ Bearer 토큰</text>
+
+  
+  <line x1="580" y1="320" x2="580" y2="166" stroke="#3b4252" stroke-width="1.5" marker-end="url(#ka)"/>
+  <text x="588" y="238" style="font-size:11px" font-weight="600">⑥ 현재 role 조회</text>
+  <text x="588" y="252" style="font-size:10.5px" fill="#5d6470">Admin API, 캐시 미스 때만</text>
+
+  
+  <line x1="720" y1="164" x2="720" y2="318" stroke="#c98a12" stroke-width="1.5" marker-end="url(#kb)"/>
+  <text x="728" y="238" style="font-size:11px" font-weight="600" fill="#9a6700">⑨ role 변경 알림</text>
+  <text x="728" y="252" style="font-size:10.5px" fill="#9a6700">webhook, 커밋 즉시</text>
+
+  
+  <line x1="600" y1="432" x2="600" y2="558" stroke="#3b4252" stroke-width="1.5" marker-end="url(#ka)"/>
+  <text x="608" y="490" style="font-size:11px" font-weight="600">⑦ 장부 기록</text>
+  <text x="608" y="504" style="font-size:10.5px" fill="#5d6470">호출 1건 = 1줄, 허용·거부 모두</text>
+
+  
+  <line x1="780" y1="376" x2="878" y2="376" stroke="#3b4252" stroke-width="1.5" marker-end="url(#ka)"/>
+  <text x="829" y="367" text-anchor="middle" style="font-size:11px" font-weight="600">⑧ 허용분만 전달</text>
+  <text x="829" y="389" text-anchor="middle" style="font-size:10.5px" fill="#5d6470">거부는 전달 안 함</text>
+
+  
+  <g transform="translate(40,672)">
+    <rect x="0" y="-10" width="14" height="14" rx="3" fill="#eef3ff" stroke="#2456c9" stroke-width="2"/><text x="20" y="1" style="font-size:11px">이 프로젝트가 만든 것</text>
+    <rect x="160" y="-10" width="14" height="14" rx="3" fill="#fff7e6" stroke="#c98a12" stroke-width="2"/><text x="180" y="1" style="font-size:11px">신원 · 권한 서버</text>
+    <rect x="300" y="-10" width="14" height="14" rx="3" fill="#fff" stroke="#c9d0dc" stroke-width="1.5"/><text x="320" y="1" style="font-size:11px">기존 소프트웨어 · 실험 보조</text>
+    <line x1="500" y1="-3" x2="530" y2="-3" stroke="#3b4252" stroke-width="1.5" marker-end="url(#ka)"/><text x="536" y="1" style="font-size:11px">요청 방향</text>
+    <line x1="630" y1="-3" x2="660" y2="-3" stroke="#c98a12" stroke-width="1.5" marker-end="url(#kb)"/><text x="666" y="1" style="font-size:11px">Keycloak 이 먼저 보내는 알림</text>
+  </g>
+</svg></div>
+
+번호는 (3)편에서 자세히 다루는 로그인·호출 순서다. 지금은 세 가지만 보면 된다. 게이트웨이는 도구를 갖고 있지 않다(⑧에서 넘기기만 한다). 권한은 토큰이 아니라 Keycloak에서 매번 확인한다(⑥, 30초 캐시). Keycloak에서 권한이 바뀌면 게이트웨이에 바로 알려 준다(⑨). 셋째가 (2)편의 주제다.
+
 ## 숫자
 
 | 모델 | 조건 | 호출 | 정책 밖 | 비율 | 실행됨 | 차단됨 | 업무 성공 |
