@@ -6,6 +6,16 @@ categories: [개발, MCP]
 tags: [mcp, keycloak, oauth2, cimd, pkce]
 ---
 
+> **MCP 게이트웨이 실측기 시리즈**
+>
+> (0) [왜 이걸 만들고 재기로 했나](/posts/mcp-gateway-lab-0/)  
+> (1) [정상 업무만 시켰는데 6%가 새더라](/posts/mcp-gateway-lab-1/)  
+> (2) [권한을 뺏어도 30초 동안 통과된다](/posts/mcp-gateway-lab-2/)  
+> **(3) [등록 없이 로그인시키기, Keycloak CIMD](/posts/mcp-gateway-lab-3/)**  
+> (4) [도구 없는 경비실, 200줄 게이트웨이](/posts/mcp-gateway-lab-4/)  
+> (5) [이 숫자를 믿어도 되는가](/posts/mcp-gateway-lab-5/)  
+{: .prompt-tip }
+
 Keycloak 로그인 화면에 처음 보는 문구가 떴다. "The client's hostname is host.docker.internal." 이 클라이언트를 Keycloak에 등록한 적이 없다. 그런데 Keycloak은 이 클라이언트가 누구인지 알고 있었고, 무슨 권한을 요구하는지도 화면에 적어 놓았다. MCP 인가 스펙이 기존 OAuth 위에 얹은 두 가지 중 하나가 눈앞에서 작동하는 순간이었다.
 
 ## OAuth를 왜 건드려야 했나
@@ -79,15 +89,3 @@ Keycloak 밖에서도 셋. Spring Boot 부모 POM 대신 BOM import를 쓰면 �
 ## 다음 편
 
 토큰은 받았다. 그 토큰을 받는 쪽, 게이트웨이는 무엇을 해야 하고 무엇을 하지 말아야 하나. (4)편은 도구를 하나도 갖지 않은 200줄짜리 경비실의 설계 결정이다.
-
-
----
-
-**MCP 게이트웨이 실측기 시리즈**
-
-- (0) [왜 이걸 만들고 재기로 했나](/posts/mcp-gateway-lab-0/)
-- (1) [정상 업무만 시켰는데 6%가 새더라](/posts/mcp-gateway-lab-1/)
-- (2) [권한을 뺏어도 30초 동안 통과된다](/posts/mcp-gateway-lab-2/)
-- **(3) [등록 없이 로그인시키기, Keycloak CIMD](/posts/mcp-gateway-lab-3/)**
-- (4) [도구 없는 경비실, 200줄 게이트웨이](/posts/mcp-gateway-lab-4/)
-- (5) [이 숫자를 믿어도 되는가](/posts/mcp-gateway-lab-5/)

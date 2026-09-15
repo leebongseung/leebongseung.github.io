@@ -6,6 +6,16 @@ categories: [개발, MCP]
 tags: [mcp, keycloak, 캐시, 권한, 측정]
 ---
 
+> **MCP 게이트웨이 실측기 시리즈**
+>
+> (0) [왜 이걸 만들고 재기로 했나](/posts/mcp-gateway-lab-0/)  
+> (1) [정상 업무만 시켰는데 6%가 새더라](/posts/mcp-gateway-lab-1/)  
+> **(2) [권한을 뺏어도 30초 동안 통과된다](/posts/mcp-gateway-lab-2/)**  
+> (3) [등록 없이 로그인시키기, Keycloak CIMD](/posts/mcp-gateway-lab-3/)  
+> (4) [도구 없는 경비실, 200줄 게이트웨이](/posts/mcp-gateway-lab-4/)  
+> (5) [이 숫자를 믿어도 되는가](/posts/mcp-gateway-lab-5/)  
+{: .prompt-tip }
+
 폴링 조건 20회를 돌리는 데 20분이 걸렸다. 한 번 권한을 뺏으면 게이트웨이가 알아채기까지 정확히 30초씩 기다려야 했기 때문이다. 그 30초 동안 프로브는 220번을 두드렸고 220번 다 통과했다. 이벤트 방식으로 바꾸자 0.035초가 됐다. 그런데 100번 중 3번은 여전히 하나씩 통과했다.
 
 ## 왜 캐시가 문제가 되나
@@ -74,15 +84,3 @@ tags: [mcp, keycloak, 캐시, 권한, 측정]
 ## 다음 편
 
 게이트웨이가 "이 사람의 현재 권한"을 Keycloak에 물을 수 있는 건 호출에 붙어 온 토큰이 누구 것인지 알기 때문이다. 그 토큰은 어떻게 나오고, 에이전트 같은 클라이언트는 어떻게 사전 등록도 없이 그걸 받는가. (3)편은 MCP 인가 스펙을 Keycloak으로 끝까지 돌린 기록이다.
-
-
----
-
-**MCP 게이트웨이 실측기 시리즈**
-
-- (0) [왜 이걸 만들고 재기로 했나](/posts/mcp-gateway-lab-0/)
-- (1) [정상 업무만 시켰는데 6%가 새더라](/posts/mcp-gateway-lab-1/)
-- **(2) [권한을 뺏어도 30초 동안 통과된다](/posts/mcp-gateway-lab-2/)**
-- (3) [등록 없이 로그인시키기, Keycloak CIMD](/posts/mcp-gateway-lab-3/)
-- (4) [도구 없는 경비실, 200줄 게이트웨이](/posts/mcp-gateway-lab-4/)
-- (5) [이 숫자를 믿어도 되는가](/posts/mcp-gateway-lab-5/)

@@ -6,6 +6,16 @@ categories: [개발, MCP]
 tags: [mcp, spring-boot, 게이트웨이, 설계]
 ---
 
+> **MCP 게이트웨이 실측기 시리즈**
+>
+> (0) [왜 이걸 만들고 재기로 했나](/posts/mcp-gateway-lab-0/)  
+> (1) [정상 업무만 시켰는데 6%가 새더라](/posts/mcp-gateway-lab-1/)  
+> (2) [권한을 뺏어도 30초 동안 통과된다](/posts/mcp-gateway-lab-2/)  
+> (3) [등록 없이 로그인시키기, Keycloak CIMD](/posts/mcp-gateway-lab-3/)  
+> **(4) [도구 없는 경비실, 200줄 게이트웨이](/posts/mcp-gateway-lab-4/)**  
+> (5) [이 숫자를 믿어도 되는가](/posts/mcp-gateway-lab-5/)  
+{: .prompt-tip }
+
 이 게이트웨이는 도구를 하나도 갖고 있지 않다. 이슈를 만들 줄도, 페이지를 읽을 줄도 모른다. 출입증을 확인하고, 규칙표를 보고, 장부에 적고, 통과한 것만 옆 방으로 넘긴다. 그게 전부다. 이 편은 그 네 가지를 어떻게 나눴는지, 도중에 계획을 바꾼 결정 두 개, 그리고 호출당 7.7ms라는 대가가 어디에 쓰이는지다.
 
 ## 요청 한 건이 지나가는 길
@@ -116,15 +126,3 @@ Keycloak 26.7.0과 PostgreSQL을 Testcontainers로 띄우고 실제 토큰으로
 ## 다음 편
 
 네 편에 걸쳐 숫자를 냈다. 마지막은 그 숫자를 왜 믿어도 되는지, 어디서 틀릴 수 있는지, 그리고 중간에 실제로 틀렸던 게 뭐였는지다.
-
-
----
-
-**MCP 게이트웨이 실측기 시리즈**
-
-- (0) [왜 이걸 만들고 재기로 했나](/posts/mcp-gateway-lab-0/)
-- (1) [정상 업무만 시켰는데 6%가 새더라](/posts/mcp-gateway-lab-1/)
-- (2) [권한을 뺏어도 30초 동안 통과된다](/posts/mcp-gateway-lab-2/)
-- (3) [등록 없이 로그인시키기, Keycloak CIMD](/posts/mcp-gateway-lab-3/)
-- **(4) [도구 없는 경비실, 200줄 게이트웨이](/posts/mcp-gateway-lab-4/)**
-- (5) [이 숫자를 믿어도 되는가](/posts/mcp-gateway-lab-5/)

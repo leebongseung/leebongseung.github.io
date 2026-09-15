@@ -6,6 +6,16 @@ categories: [개발, MCP]
 tags: [mcp, ai-agent, 게이트웨이, 권한, 측정]
 ---
 
+> **MCP 게이트웨이 실측기 시리즈**
+>
+> (0) [왜 이걸 만들고 재기로 했나](/posts/mcp-gateway-lab-0/)  
+> **(1) [정상 업무만 시켰는데 6%가 새더라](/posts/mcp-gateway-lab-1/)**  
+> (2) [권한을 뺏어도 30초 동안 통과된다](/posts/mcp-gateway-lab-2/)  
+> (3) [등록 없이 로그인시키기, Keycloak CIMD](/posts/mcp-gateway-lab-3/)  
+> (4) [도구 없는 경비실, 200줄 게이트웨이](/posts/mcp-gateway-lab-4/)  
+> (5) [이 숫자를 믿어도 되는가](/posts/mcp-gateway-lab-5/)  
+{: .prompt-tip }
+
 첫 실행 결과가 나왔을 때 표를 두 번 봤다. 게이트웨이가 있는 쪽과 없는 쪽의 "정책 밖 호출" 수가 똑같았기 때문이다. 게이트웨이를 끼웠는데 왜 위반이 줄지 않았을까. 답은 간단했고, 그게 이 편의 결론이 됐다.
 
 ## 실험은 이렇게 짰다
@@ -62,15 +72,3 @@ gateway 조건에서 업무 실패는 240회 중 딱 1회였다. Haiku가 행 id
 ## 다음 편
 
 막는 지점을 두면 끝인가 싶었는데, 아니었다. 그 지점이 "이 사람이 뭘 할 수 있는지"를 어디서 읽어 오는지, 그 답이 바뀌었을 때 얼마나 빨리 아는지가 남는다. (2)편은 권한을 뺏고도 30초 동안 통과되는 이야기다.
-
-
----
-
-**MCP 게이트웨이 실측기 시리즈**
-
-- (0) [왜 이걸 만들고 재기로 했나](/posts/mcp-gateway-lab-0/)
-- **(1) [정상 업무만 시켰는데 6%가 새더라](/posts/mcp-gateway-lab-1/)**
-- (2) [권한을 뺏어도 30초 동안 통과된다](/posts/mcp-gateway-lab-2/)
-- (3) [등록 없이 로그인시키기, Keycloak CIMD](/posts/mcp-gateway-lab-3/)
-- (4) [도구 없는 경비실, 200줄 게이트웨이](/posts/mcp-gateway-lab-4/)
-- (5) [이 숫자를 믿어도 되는가](/posts/mcp-gateway-lab-5/)
